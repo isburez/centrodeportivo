@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservaEditDlg" widgetVar="ReservaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReservaTitle}">
+            <h:form id="ReservaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditReservaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reservaController.selected.id}" title="#{bundle.EditReservaTitle_id}" required="true" requiredMessage="#{bundle.EditReservaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditReservaLabel_fecha}" for="fecha" />
+                        <p:inputText id="fecha" value="#{reservaController.selected.fecha}" title="#{bundle.EditReservaTitle_fecha}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_hora}" for="hora" />
+                        <p:inputText id="hora" value="#{reservaController.selected.hora}" title="#{bundle.EditReservaTitle_hora}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_duracion}" for="duracion" />
+                        <p:inputText id="duracion" value="#{reservaController.selected.duracion}" title="#{bundle.EditReservaTitle_duracion}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_nombreResponsable}" for="nombreResponsable" />
+                        <p:inputText id="nombreResponsable" value="#{reservaController.selected.nombreResponsable}" title="#{bundle.EditReservaTitle_nombreResponsable}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_telefonoResponsable}" for="telefonoResponsable" />
+                        <p:inputText id="telefonoResponsable" value="#{reservaController.selected.telefonoResponsable}" title="#{bundle.EditReservaTitle_telefonoResponsable}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_identificacionResponsable}" for="identificacionResponsable" />
+                        <p:inputText id="identificacionResponsable" value="#{reservaController.selected.identificacionResponsable}" title="#{bundle.EditReservaTitle_identificacionResponsable}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_cancha}" for="cancha" />
+                        <p:inputText id="cancha" value="#{reservaController.selected.cancha}" title="#{bundle.EditReservaTitle_cancha}" />
+                        <p:outputLabel value="#{bundle.EditReservaLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{reservaController.selected.valor}" title="#{bundle.EditReservaTitle_valor}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reservaController.update}" value="#{bundle.Save}" update="display,:ReservaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReservaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReservaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
